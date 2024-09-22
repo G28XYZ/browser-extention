@@ -1,28 +1,28 @@
 {
-  "manifest_version": 3,
-  "name": "browser-extention",
-  "version": "0.1",
-  "description": "",
-  "icons": {
-    "16": "img/icon16.png",
-    "32": "img/icon32.png",
-    "48": "img/icon48.png",
-    "128": "img/icon128.png"
-  },
-  "permissions": ["tabs", "activeTab", "storage", "scripting"],
-  "background": {
-    "service_worker": "background.js",
-    "type": "module"
-  },
-  "content_scripts": [
-    {
-      "matches": ["<all_urls>"],
-      "js": ["content.js"],
-      "type": "module"
-    }
-  ],
-  "action": {
-    "default_popup": "index.html"
-  },
-  "host_permissions": ["*://*/*"]
+	"manifest_version": 3,
+	"name": "browser-extention",
+	"version": "0.1",
+	"description": "",
+	"icons": {
+		"16": "img/pencil16.png",
+		"32": "img/pencil32.png",
+		"64": "img/pencil64.png",
+		"128": "img/pencil128.png"
+	},
+	"permissions": ["tabs", "activeTab", "storage", "scripting"],
+	"background": {
+		"service_worker": "background.js",
+		"type": "module"
+	},
+	"content_scripts": [
+		{
+			"matches": ["<all_urls>"],
+			"js": ["content.js"],
+			"type": "module"
+		}
+	],
+	"action": {
+		"default_popup": "index.html"
+	},
+	"host_permissions": ["*://*/*"]
 }

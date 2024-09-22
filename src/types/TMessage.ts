@@ -1,8 +1,17 @@
 export enum TAction {
-  INIT = "INIT",
+	INIT = "INIT",
+	GET_ANIMAL = "GET_ANIMAL",
+	RENDER = "RENDER",
+	DELETE_RENDER = "DELETE_RENDER",
+	INVERT_COLOR = "INVERT_COLOR",
 }
 
+// filter: invert(100%);
 export type TMessage = {
-  action: `${TAction}`;
-  tabId?: number;
+	action: `${TAction}`;
+	tabId?: number;
+	animalType?: string;
+	animalData?: AnimalResponse;
 };
+
+export type AnimalResponse = { image: string; fact: string };
