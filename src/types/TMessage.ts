@@ -6,7 +6,6 @@ export enum TAction {
 	INVERT_COLOR = "INVERT_COLOR",
 }
 
-// filter: invert(100%);
 export type TMessage = {
 	action: `${TAction}`;
 	tabId?: number;

@@ -11,14 +11,14 @@ export const App = () => {
 	const [animalData, setAnimalData] = useState<AnimalResponse>({ image: "", fact: "" });
 	const [animalType, setAnimalType] = useState("cat");
 
+	useEffect(() => {
+		onInit();
+	}, []);
+
 	const onInit = async () => {
 		const response = await sendMessage({ action: TAction.INIT });
 		response.animalData.image && setAnimalData(response.animalData);
 	};
-
-	useEffect(() => {
-		onInit();
-	}, []);
 
 	const handleGetAnimal = useCallback(async () => {
 		setIsLoading(true);
@@ -27,23 +27,15 @@ export const App = () => {
 		setIsLoading(false);
 	}, [animalType]);
 
-	const handleRender = useCallback(async () => {
-		sendMessage({ action: TAction.RENDER });
-	}, []);
+	const handleRender = useCallback(async () => sendMessage({ action: TAction.RENDER }), []);
+	const handleDelete = useCallback(async () => sendMessage({ action: TAction.DELETE_RENDER }), []);
 
-	const handleDelete = useCallback(async () => {
-		sendMessage({ action: TAction.DELETE_RENDER });
-	}, []);
+	const handleInvert = useCallback(async () => sendMessage({ action: TAction.INVERT_COLOR }), []);
 
-	const handleInvert = useCallback(async () => {
-		sendMessage({ action: TAction.INVERT_COLOR });
-	}, []);
-
-	const onChange = useCallback((animalType: string) => {
-		setAnimalType(animalType);
-	}, []);
+	const onChange = useCallback((animalType: string) => setAnimalType(animalType), []);
 
 	if (isLoading)
+		// если загрука, показать лоадер
 		return (
 			<Flex gap={8} align="center" justify="center">
 				<span>Загрузка...</span>

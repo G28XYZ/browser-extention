@@ -15,78 +15,80 @@ chrome.runtime.onMessage.addListener((request: TMessage, sender, sendResponse: (
 			break;
 		case "GET_ANIMAL":
 			(async () => {
-				animalData = await getRandom(animalType);
+				animalData = await actions.getRandom(animalType);
 				sendResponse({ ...request, animalData });
 			})();
 			break;
 		case "DELETE_RENDER":
-			deleteRender();
+			actions.deleteRender();
 			sendResponse(request);
 			break;
 		case "INVERT_COLOR":
-			onInvert();
+			actions.onInvert();
 			sendResponse(request);
 			break;
 		case "RENDER":
-			renderToPage();
+			actions.renderToPage();
 		default:
 			sendResponse(request);
 	}
 	return true; // признак что ответ будет асинхронный
 });
 
-const renderToPage = () => {
-	const browserExtentionRender = document.querySelector("#browserExtentionRender");
-	if (!browserExtentionRender) {
-		const img = document.createElement("img");
-		const figcaption = document.createElement("figcaption");
-		const figure = document.createElement("figure");
+const actions = {
+	renderToPage: () => {
+		const browserExtentionRender = document.querySelector("#browserExtentionRender");
+		if (!browserExtentionRender) {
+			const img = document.createElement("img");
+			const figcaption = document.createElement("figcaption");
+			const figure = document.createElement("figure");
 
-		figure.id = "browserExtentionRender";
+			figure.id = "browserExtentionRender";
 
-		img.src = animalData.image;
-		img.style.maxHeight = "300px";
-		img.style.maxWidth = "300px";
+			img.src = animalData.image;
+			img.style.maxHeight = "300px";
+			img.style.maxWidth = "300px";
 
-		figcaption.textContent = animalData.fact;
+			figcaption.textContent = animalData.fact;
 
-		figure.append(img, figcaption);
+			figure.append(img, figcaption);
 
-		document.body.prepend(figure);
-	} else if (browserExtentionRender) {
-		const img = browserExtentionRender.querySelector("img");
-		const figcaption = browserExtentionRender.querySelector("figcaption");
+			document.body.prepend(figure);
+		} else if (browserExtentionRender) {
+			const img = browserExtentionRender.querySelector("img");
+			const figcaption = browserExtentionRender.querySelector("figcaption");
 
-		img.src = animalData.image;
-		figcaption.textContent = animalData.fact;
-	}
-};
+			img.src = animalData.image;
+			figcaption.textContent = animalData.fact;
+		}
+	},
 
-const deleteRender = () => {
-	document.querySelector("#browserExtentionRender")?.remove();
-};
+	deleteRender: () => {
+		document.querySelector("#browserExtentionRender")?.remove();
+	},
 
-const onInvert = () => {
-	const invertValue = "invert(100%)";
+	onInvert: () => {
+		const invertValue = "invert(100%)";
 
-	if (!document.body.style.filter?.includes(invertValue)) document.body.style.filter = invertValue;
-	else document.body.style.filter = "none";
-};
+		if (!document.body.style.filter?.includes(invertValue)) document.body.style.filter = invertValue;
+		else document.body.style.filter = "none";
+	},
 
-const getRandom = async (animalType: string = "cat"): Promise<AnimalResponse> => {
-	await new Promise((resolve) => setTimeout(() => resolve(true), 1000));
+	getRandom: async (animalType: string = "cat"): Promise<AnimalResponse> => {
+		await new Promise((resolve) => setTimeout(() => resolve(true), 1000));
 
-	const res = await fetch("https://some-random-api.com/animal/" + (animalType || ""));
+		const res = await fetch("https://some-random-api.com/animal/" + (animalType || ""));
 
-	animalData = {
-		image: "",
-		fact: "Ошибка, попробуйте ещё раз.",
-	};
+		animalData = {
+			image: "",
+			fact: "Ошибка, попробуйте ещё раз.",
+		};
 
-	if (res.ok && animalType) {
-		animalData = await res.json();
+		if (res.ok && animalType) {
+			animalData = await res.json();
+			return animalData;
+		}
+
 		return animalData;
-	}
-
-	return animalData;
+	},
 };

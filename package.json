@@ -1,36 +1,36 @@
 {
-  "name": "browser-extention",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
-  "scripts": {
-    "start": "npm run dev",
-    "dev": "vite",
-    "build": "tsc -b && vite build",
-    "build:prod": "tsc -b && vite build --mode production",
-    "watch": "tsc -b && vite build --watch",
-    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
-  },
-  "dependencies": {
-    "@ant-design/icons": "^5.4.0",
-    "antd": "^5.20.5",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1"
-  },
-  "devDependencies": {
-    "@types/chrome": "^0.0.268",
-    "@types/react": "^18.3.3",
-    "@types/react-dom": "^18.3.0",
-    "@typescript-eslint/eslint-plugin": "^7.15.0",
-    "@typescript-eslint/parser": "^7.15.0",
-    "@vitejs/plugin-basic-ssl": "^1.1.0",
-    "@vitejs/plugin-react": "^4.3.1",
-    "eslint": "^8.57.0",
-    "eslint-plugin-react-hooks": "^4.6.2",
-    "eslint-plugin-react-refresh": "^0.4.7",
-    "ts-node": "^10.9.2",
-    "typescript": "^5.2.2",
-    "vite": "^5.4.3"
-  }
+	"name": "browser-extention",
+	"private": true,
+	"version": "1.0.0",
+	"type": "module",
+	"scripts": {
+		"start": "npm run dev",
+		"dev": "vite",
+		"build": "tsc -b && vite build",
+		"build:prod": "tsc -b && vite build --mode production",
+		"watch": "tsc -b && vite build --watch",
+		"lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+		"preview": "vite preview"
+	},
+	"dependencies": {
+		"@ant-design/icons": "^5.4.0",
+		"antd": "^5.20.5",
+		"react": "^18.3.1",
+		"react-dom": "^18.3.1"
+	},
+	"devDependencies": {
+		"@types/chrome": "^0.0.268",
+		"@types/react": "^18.3.3",
+		"@types/react-dom": "^18.3.0",
+		"@typescript-eslint/eslint-plugin": "^7.15.0",
+		"@typescript-eslint/parser": "^7.15.0",
+		"@vitejs/plugin-basic-ssl": "^1.1.0",
+		"@vitejs/plugin-react": "^4.3.1",
+		"eslint": "^8.57.0",
+		"eslint-plugin-react-hooks": "^4.6.2",
+		"eslint-plugin-react-refresh": "^0.4.7",
+		"ts-node": "^10.9.2",
+		"typescript": "^5.2.2",
+		"vite": "^5.4.3"
+	}
 }
