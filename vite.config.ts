@@ -17,6 +17,9 @@ export default defineConfig(({ mode }) => {
 			// emptyOutDir: false,
 			sourcemap: mode !== "production",
 		},
+		esbuild: {
+			minifyIdentifiers: false,
+		},
 	};
 
 	const input = {
