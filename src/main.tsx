@@ -1,3 +1,5 @@
+// нужен для корректной работы пакета react-context-tk
+// FIXME - нужно пофиксить
 import "reflect-metadata";
 
 import ReactDOM from "react-dom/client";
