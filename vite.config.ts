@@ -14,7 +14,6 @@ export default defineConfig(({ mode }) => {
 			},
 		},
 		build: {
-			// emptyOutDir: false,
 			sourcemap: mode !== "production",
 		},
 		esbuild: {
